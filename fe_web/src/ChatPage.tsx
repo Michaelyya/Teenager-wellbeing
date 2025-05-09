@@ -352,103 +352,95 @@ function ChatPage() {
 
 {/* Preferences Modal */}
 {showPreferences && (
-  <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-2 z-50 backdrop-blur-sm">
-    <div className="bg-white rounded-lg shadow-lg w-full max-w-2xl max-h-[100vh] overflow-y-auto border border-border animate-[fadeIn_0.3s_ease-out] relative before:content-[''] before:absolute before:top-0 before:left-0 before:right-0 before:h-1 before:bg-gradient-to-r before:from-transparent before:to-transparent before:rounded-t-lg">
-      <div className="p-4 space-y-4">
-        <h2 className="text-xl font-bold text-text-transparent">聊天偏好设置</h2>
-        
-        <div className="space-y-3">
-          <div>
-            <h3 className="font-medium mb-1 text-text-secondary">语言</h3>
-            <input
-              type="text"
-              value={language}
-              onChange={(e) => setLanguage(e.target.value)}
-              className="w-full p-1 border border-border rounded-lg bg-white/80"
-              placeholder="请输入首选语言"
-            />
-          </div>
+  <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50 backdrop-blur-md">
+    <div className="bg-white/90 rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto border border-gray-200 animate-[fadeIn_0.3s_ease-out]">
+      <div className="px-6 py-4 space-y-5">
+        <h2 className="text-2xl font-bold text-gray-700 border-b pb-2">聊天偏好设置</h2>
 
-          <div>
-            <h3 className="font-medium mb-1 text-text-secondary">对话目的</h3>
-            <input
-              type="text"
-              value={purpose}
-              onChange={(e) => setPurpose(e.target.value)}
-              className="w-full p-1 border border-border rounded-lg bg-white/80"
-              placeholder="请输入对话目的"
-            />
-          </div>
+        <div>
+          <h3 className="font-semibold mb-1 text-gray-600">语言</h3>
+          <input
+            type="text"
+            value={language}
+            onChange={(e) => setLanguage(e.target.value)}
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-green-300"
+            placeholder="请输入首选语言"
+          />
+        </div>
 
-          <div>
-            <h3 className="font-medium mb-1 text-text-secondary">称呼偏好</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-1">
-              {titles.map((title) => (
-                <button
-                  key={title}
-                  onClick={() => setSelectedTitle(title)}
-                  className={`p-1 text-left rounded-lg border transition-colors duration-normal ${
-                    selectedTitle === title
-                      ? 'border-transparent bg-transparent-light/30'
-                      : 'border-border hover:bg-bg-secondary'
+        <div>
+          <h3 className="font-semibold mb-1 text-gray-600">对话目的</h3>
+          <input
+            type="text"
+            value={purpose}
+            onChange={(e) => setPurpose(e.target.value)}
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-green-300"
+            placeholder="请输入对话目的"
+          />
+        </div>
+
+        <div>
+          <h3 className="font-semibold mb-2 text-gray-600">称呼偏好</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+            {titles.map((title) => (
+              <button
+                key={title}
+                onClick={() => setSelectedTitle(title)}
+                className={`p-2 rounded-lg border transition-all duration-200 text-left hover:bg-[#AEC9A0] hover:border-[#9DC08B]
+
+                  ${selectedTitle === title ? 'bg-[#9DC08B] border-[#9DC08B] font-medium' : 'bg-white border-gray-300'
                   }`}
-                >
-                  {title}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <h3 className="font-medium mb-1 text-text-secondary">人称代词</h3>
-            <div className="grid grid-cols-2 gap-1">
-              {properNouns.map((noun) => (
-                <button
-                  key={noun}
-                  onClick={() => setSelectedProperNoun(noun)}
-                  className={`p-1 rounded-lg border transition-colors duration-normal ${
-                    selectedProperNoun === noun
-                      ? 'border-transparent bg-transparent-light/30'
-                      : 'border-border hover:bg-bg-secondary'
-                  }`}
-                >
-                  {noun}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <h3 className="font-medium mb-1 text-text-secondary">性格特征</h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-1">
-              {personalityTraits.map((trait) => (
-                <button
-                  key={trait}
-                  onClick={() => handleTraitToggle(trait)}
-                  className={`p-1 text-sm rounded-lg border transition-colors duration-normal ${
-                    selectedTraits.includes(trait)
-                      ? 'border-transparent bg-transparent-light/30'
-                      : 'border-border hover:bg-bg-secondary'
-                  }`}
-                >
-                  {trait}
-                </button>
-              ))}
-            </div>
+              >
+                {title}
+              </button>
+            ))}
           </div>
         </div>
-        <div className="mb-4">
-          <h3 className="font-medium mb-1 text-text-secondary">语气</h3>
-          <div className="grid grid-cols-2 gap-1">
+
+        <div>
+          <h3 className="font-semibold mb-2 text-gray-600">人称代词</h3>
+          <div className="grid grid-cols-2 gap-2">
+            {properNouns.map((noun) => (
+              <button
+                key={noun}
+                onClick={() => setSelectedProperNoun(noun)}
+                className={`p-2 rounded-lg border transition-all duration-200 hover:bg-[#AEC9A0] hover:border-[#9DC08B]
+
+                  ${selectedProperNoun === noun ? 'bg-[#9DC08B] border-[#9DC08B] font-medium' : 'bg-white border-gray-300'}`}
+              >
+                {noun}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <h3 className="font-semibold mb-2 text-gray-600">性格特征</h3>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+            {personalityTraits.map((trait) => (
+              <button
+                key={trait}
+                onClick={() => handleTraitToggle(trait)}
+                className={`p-2 rounded-lg border transition-all duration-200 hover:bg-[#AEC9A0] hover:border-[#9DC08B]
+
+                  ${selectedTraits.includes(trait) ? 'bg-[#9DC08B] border-[#9DC08B] font-medium' : 'bg-white border-gray-300'}`}
+              >
+                {trait}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <h3 className="font-semibold mb-2 text-gray-600">语气</h3>
+          <div className="grid grid-cols-2 gap-2">
             {tones.map((tone) => (
               <button
                 key={tone}
                 onClick={() => setSelectedTone(tone)}
-                className={`p-1 rounded-lg border transition-colors duration-normal ${
-                  selectedTone === tone
-                    ? 'border-transparent bg-transparent-light/30'
-                    : 'border-border hover:bg-bg-secondary'
-                }`}
+                className={`p-2 rounded-lg border transition-all duration-200 hover:bg-[#AEC9A0] hover:border-[#9DC08B]
+
+                  ${selectedTone === tone ? 'bg-[#9DC08B] border-[#9DC08B] font-medium' : 'bg-white border-gray-300'}`}
               >
                 {tone}
               </button>
@@ -456,11 +448,11 @@ function ChatPage() {
           </div>
         </div>
       </div>
-      
-      <div className="p-3 flex justify-end border-t border-border">
+
+      <div className="px-6 py-3 flex justify-end border-t border-gray-200">
         <button 
           onClick={savePreferences}
-          className="px-4 cursor-pointer border-2 border-black/50 hover:scale-105 py-2 bg-transparent hover:bg-transparent-dark text-black rounded-lg transition-colors duration-normal shadow-md relative overflow-hidden before:content-[''] before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:-translate-x-full hover:before:animate-shimmer"
+          className="px-5 py-2 bg-[#9DC08B] hover:bg-[#AEC9A0] text-white rounded-lg shadow transition duration-200"
         >
           保存偏好
         </button>
